@@ -1,0 +1,26 @@
+﻿@model CatDaze.Models.Image
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Update", "Admin"))
+{
+    <div class="form-group">
+        @Html.LabelFor(x => x.ImageName)
+        @Html.TextBoxFor(x => x.ImageName, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.ImageCaption)
+        @Html.TextBoxFor(x => x.ImageCaption, new { @class = "form-control" })
+    </div>
+    @Html.HiddenFor(x => x.Id)
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+
+

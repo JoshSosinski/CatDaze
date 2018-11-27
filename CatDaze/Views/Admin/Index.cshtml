@@ -1,0 +1,26 @@
+﻿@model CatDaze.ViewModels.AdminViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Admin Page</h2>
+
+@Html.ActionLink("Create", "Create", null, new { @class = "btn btn-primary"})
+
+<table class="table">
+    <tr>
+        <td>Name</td>
+        <td>Caption</td>
+        <td>User</td>
+        <td>Date</td>
+    </tr>
+    @foreach(var item in Model.Images)
+    {
+     <tr>
+         <td>@Html.ActionLink(item.ImageName, "Edit", new { id = item.Id})</td>
+         <td>@item.ImageCaption</td>
+         <td>@item.LastUpdatedBy</td>
+         <td>@item.LastUpdatedDate</td>
+     </tr>
+    }
+</table>

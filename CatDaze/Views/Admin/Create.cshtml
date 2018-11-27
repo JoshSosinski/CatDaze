@@ -1,0 +1,17 @@
+﻿@model CatDaze.Models.Image
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@Html.LabelFor(x => x.ImageName)
+@Html.TextBoxFor(x => x.ImageName)
+
+@Html.LabelFor(x => x.ImageCaption)
+@Html.TextBoxFor(x => x.ImageCaption)
+
+@Html.LabelFor(x => x.ImageLocation)
+@Html.TextBoxFor(x => x.ImageLocation)
+
+
