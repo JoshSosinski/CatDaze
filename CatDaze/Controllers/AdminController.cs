@@ -81,10 +81,21 @@ namespace CatDaze.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public ActionResult Create(Image image, HttpPostedFileBase file)
-        //{
+        [HttpPost]
+        public ActionResult CreateImage(Image image, HttpPostedFileBase file)
+        {
+            //Only Temporary
+            image.LastUpdatedBy = "Josh";
+            image.LastUpdatedDate = DateTime.UtcNow;
 
-        //}
+            if(!ModelState.IsValid)
+            {
+                return View(image);
+            }
+
+
+
+            return new HttpStatusCodeResult(404, "Bad Request");
+        }
     }
 }

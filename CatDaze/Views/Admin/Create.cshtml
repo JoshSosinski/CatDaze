@@ -5,13 +5,22 @@
 
 <h2>Create</h2>
 
-@Html.LabelFor(x => x.ImageName)
-@Html.TextBoxFor(x => x.ImageName)
+@using (Html.BeginForm("CreateImage", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(x => x.ImageName)
+        @Html.TextBoxFor(x => x.ImageName, new { @class = "form-control" })
+    </div>
 
-@Html.LabelFor(x => x.ImageCaption)
-@Html.TextBoxFor(x => x.ImageCaption)
+    <div class="form-group">
+        @Html.LabelFor(x => x.ImageCaption)
+        @Html.TextBoxFor(x => x.ImageCaption, new { @class = "form-control" })
+    </div>
 
-@Html.LabelFor(x => x.ImageLocation)
-@Html.TextBoxFor(x => x.ImageLocation)
+    <div class="form-group">
+        <label>Please select and image from your computer:</label>
+        <input type="file" name="file" id="file" class="form-control-file" />
+    </div>
 
-
+    <button type="submit">Create</button>
+}
