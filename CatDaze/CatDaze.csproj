@@ -184,6 +184,10 @@
     <Compile Include="Migrations\201811220254168_Images.Designer.cs">
       <DependentUpon>201811220254168_Images.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811280309297_ImageModelRequirmentChanges.cs" />
+    <Compile Include="Migrations\201811280309297_ImageModelRequirmentChanges.Designer.cs">
+      <DependentUpon>201811280309297_ImageModelRequirmentChanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -314,6 +318,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811220254168_Images.resx">
       <DependentUpon>201811220254168_Images.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811280309297_ImageModelRequirmentChanges.resx">
+      <DependentUpon>201811280309297_ImageModelRequirmentChanges.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

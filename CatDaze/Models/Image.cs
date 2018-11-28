@@ -13,9 +13,9 @@ namespace CatDaze.Models
         public string ImageName { get; set; }
         [MaxLength(255)]
         public string ImageCaption { get; set; }
-        [Required, MaxLength(500)]
+        [MaxLength(500)]
         public string ImageLocation { get; set; }
-        [Required, MaxLength(64)]
+        [MaxLength(64)]
         public string LastUpdatedBy { get; set; }
         public DateTime LastUpdatedDate { get; set; }
     }

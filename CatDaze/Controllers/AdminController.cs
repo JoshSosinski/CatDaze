@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.IO;
 using CatDaze.ViewModels;
 using CatDaze.Models;
 
@@ -58,20 +59,20 @@ namespace CatDaze.Controllers
             //    return View(imageModel);
             //}
 
-                var findImage = _dbContext.Images.FirstOrDefault(x => x.Id == imageModel.Id);
+            var findImage = _dbContext.Images.FirstOrDefault(x => x.Id == imageModel.Id);
 
-                if (findImage != null)
-                {
+            if (findImage != null)
+            {
 
-                    findImage.ImageCaption = imageModel.ImageCaption;
-                    findImage.ImageName = imageModel.ImageName;
-                    findImage.LastUpdatedBy = "Josh";
-                    findImage.LastUpdatedDate = DateTime.UtcNow;
+                findImage.ImageCaption = imageModel.ImageCaption;
+                findImage.ImageName = imageModel.ImageName;
+                findImage.LastUpdatedBy = "Josh";
+                findImage.LastUpdatedDate = DateTime.UtcNow;
 
-                    _dbContext.SaveChanges();
+                _dbContext.SaveChanges();
 
-                    return RedirectToAction("Index");
-                }
+                return RedirectToAction("Index");
+            }
 
             return new HttpStatusCodeResult(404, "Bad Request");
         }
@@ -82,20 +83,51 @@ namespace CatDaze.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateImage(Image image, HttpPostedFileBase file)
+        public ActionResult Create(Image image, HttpPostedFileBase file)
         {
-            //Only Temporary
-            image.LastUpdatedBy = "Josh";
-            image.LastUpdatedDate = DateTime.UtcNow;
+            if (file != null)
+            {
+                var picture = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath(@"..\Content\Pictures"), picture);
 
-            if(!ModelState.IsValid)
+                file.SaveAs(path);
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    file.InputStream.CopyTo(ms);
+                    byte[] array = ms.GetBuffer();
+                }
+
+                //Only Temporary
+                image.ImageLocation = path;
+                image.LastUpdatedBy = "Josh";
+                image.LastUpdatedDate = DateTime.UtcNow;
+
+                _dbContext.Images.Add(image);
+                _dbContext.SaveChanges();
+
+                return RedirectToAction("Index", "Admin");
+            }
+            else
             {
                 return View(image);
             }
 
 
+            //if (!ModelState.IsValid)
+            //{
+            //    var modelStateErrors = this.ModelState.Keys.SelectMany(key => this.ModelState[key].Errors);
 
-            return new HttpStatusCodeResult(404, "Bad Request");
+            //    return RedirectToAction("Create", image);
+            //}
+            //else
+            //{
+            //    _dbContext.Images.Add(image);
+            //    _dbContext.SaveChanges();
+
+            //    return RedirectToAction("Index", "Admin");
+            //}
+
         }
     }
 }
