@@ -10,8 +10,7 @@ using CatDaze.Models;
 namespace CatDaze.Controllers
 {
     public class AdminController : Controller
-    {
-        //public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    {        
         private readonly ApplicationDbContext _dbContext = new ApplicationDbContext();
 
         // GET: Admin
@@ -88,18 +87,12 @@ namespace CatDaze.Controllers
             if (file != null)
             {
                 var picture = Path.GetFileName(file.FileName);
-                var path = Path.Combine(Server.MapPath(@"..\Content\Pictures"), picture);
+                var path = Path.Combine(Server.MapPath(@"~\Content\Pictures"), picture);
 
                 file.SaveAs(path);
 
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    file.InputStream.CopyTo(ms);
-                    byte[] array = ms.GetBuffer();
-                }
-
                 //Only Temporary
-                image.ImageLocation = path;
+                image.ImageLocation = @"~\Content\Pictures\" + picture;
                 image.LastUpdatedBy = "Josh";
                 image.LastUpdatedDate = DateTime.UtcNow;
 
