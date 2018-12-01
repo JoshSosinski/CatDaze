@@ -3,20 +3,22 @@
 @{
     ViewBag.Title = "Home Page";
 }
-
 <div class="jumbotron">
+    
     <h1>Cat Lives</h1>
     <p class="lead">Did you know that cats are actually fascinating creatures?</p>
     <p class="lead">Click the "Learn more" button to learn more!</p>
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-    <div class="form-row">
-        @foreach (var item in Model.Images)
-        {
-            <div class="col-md-4">
-               <img  src="@Url.Content(item.ImageLocation)" />
+
+    @foreach (var item in Model.Images)
+    {
+
+        <div class="card" style="width: 18rem";>
+            <img class="card-img-top" src="@Url.Content(item.ImagePath)" />
+            <div class="card-body">
+                <p class="card-text">@item.ImageCaption</p>
             </div>
-        }
+        </div>
 
-    </div>
+    }
 </div>
-

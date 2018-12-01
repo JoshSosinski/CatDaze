@@ -188,6 +188,10 @@
     <Compile Include="Migrations\201811280309297_ImageModelRequirmentChanges.Designer.cs">
       <DependentUpon>201811280309297_ImageModelRequirmentChanges.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812010239518_ImagePathNameChange.cs" />
+    <Compile Include="Migrations\201812010239518_ImagePathNameChange.Designer.cs">
+      <DependentUpon>201812010239518_ImagePathNameChange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -321,6 +325,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811280309297_ImageModelRequirmentChanges.resx">
       <DependentUpon>201811280309297_ImageModelRequirmentChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812010239518_ImagePathNameChange.resx">
+      <DependentUpon>201812010239518_ImagePathNameChange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

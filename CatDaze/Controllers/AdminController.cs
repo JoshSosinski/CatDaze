@@ -86,13 +86,14 @@ namespace CatDaze.Controllers
         {
             if (file != null)
             {
-                var picture = Path.GetFileName(file.FileName);
+                var extension = Path.GetExtension(file.FileName);
+                var picture = image.ImageName + DateTime.Now.ToString("yyyyMMddHHmmss") + extension;
                 var path = Path.Combine(Server.MapPath(@"~\Content\Pictures"), picture);
 
                 file.SaveAs(path);
 
                 //Only Temporary
-                image.ImageLocation = @"~\Content\Pictures\" + picture;
+                image.ImagePath = @"~\Content\Pictures\" + picture;
                 image.LastUpdatedBy = "Josh";
                 image.LastUpdatedDate = DateTime.UtcNow;
 
