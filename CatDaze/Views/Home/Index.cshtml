@@ -3,22 +3,31 @@
 @{
     ViewBag.Title = "Home Page";
 }
-<div class="jumbotron">
-    
+@*<div class="jumbotron">*@
+
     <h1>Cat Lives</h1>
     <p class="lead">Did you know that cats are actually fascinating creatures?</p>
     <p class="lead">Click the "Learn more" button to learn more!</p>
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 
-    @foreach (var item in Model.Images)
-    {
+    <div class="row">
+        @foreach (var item in Model.Images)
+        {
 
-        <div class="card" style="width: 18rem";>
-            <img class="card-img-top" src="@Url.Content(item.ImagePath)" />
-            <div class="card-body">
-                <p class="card-text">@item.ImageCaption</p>
-            </div>
+            @*<div class="card mx-2" style="width: 18rem;">
+                <img class="card-img-top" src="@Url.Content(item.ImagePath)" />
+                <div class="card-body">
+                    <p class="card-text">@item.ImageCaption</p>
+                </div>
+                @Html.ActionLink("Details", "Details", new { item.Id })
+            </div>*@
+
+        <div class="polaroid-images">
+            <a href="@Url.Action("Details", new { id = item.Id })" title=@item.ImageName><img height="200" src="@Url.Content(item.ImagePath)" alt=@item.ImageName title=@item.ImageName /></a>
         </div>
 
-    }
-</div>
+        }
+    </div>
+
+
+@*</div>*@

@@ -34,5 +34,23 @@ namespace CatDaze.Controllers
 
             return View();
         }
+
+        public ActionResult Details(int? id)
+        {
+            if(id != null)
+            {
+                var findDetails = _dbContext.Images.FirstOrDefault(details => details.Id == id);
+
+                if(findDetails != null)
+                {
+                    var model = new Image();
+                    model = findDetails;
+
+                    return View(model);
+                }
+            }
+
+            return new HttpStatusCodeResult(400, "Image not found");            
+        }
     }
 }

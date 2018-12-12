@@ -1,0 +1,20 @@
+﻿@model CatDaze.Models.Image
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="@Url.Content(Model.ImagePath)" alt=@Model.ImageName>
+    <div class="card-body">
+        <h5 class="card-title">@Model.ImageName</h5>
+        <p class="card-text">@Model.ImageCaption</p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">@Model.LastUpdatedDate</li>
+    </ul>
+    <div class="card-body">
+        <a href="@Url.Action("Edit", "Admin", new { id = Model.Id })" class="card-link">Edit</a>
+    </div>
+</div>
