@@ -8,6 +8,7 @@ using CatDaze.ViewModels;
 
 namespace CatDaze.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _dbContext = new ApplicationDbContext();
