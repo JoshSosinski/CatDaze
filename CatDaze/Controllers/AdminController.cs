@@ -6,11 +6,13 @@ using System.Web.Mvc;
 using System.IO;
 using CatDaze.ViewModels;
 using CatDaze.Models;
+using System.Web.Security;
 
 namespace CatDaze.Controllers
 {
+    [Authorize(Roles = "CanManageSite")]
     public class AdminController : Controller
-    {        
+    {   
         private readonly ApplicationDbContext _dbContext = new ApplicationDbContext();
 
         // GET: Admin
@@ -65,7 +67,7 @@ namespace CatDaze.Controllers
 
                 findImage.ImageCaption = imageModel.ImageCaption;
                 findImage.ImageName = imageModel.ImageName;
-                findImage.LastUpdatedBy = "Josh";
+                findImage.LastUpdatedBy = User.Identity.Name;
                 findImage.LastUpdatedDate = DateTime.UtcNow;
 
                 _dbContext.SaveChanges();
@@ -94,7 +96,7 @@ namespace CatDaze.Controllers
 
                 //Only Temporary
                 image.ImagePath = @"~\Content\Pictures\" + picture;
-                image.LastUpdatedBy = "Josh";
+                image.LastUpdatedBy = User.Identity.Name;
                 image.LastUpdatedDate = DateTime.UtcNow;
 
                 _dbContext.Images.Add(image);
