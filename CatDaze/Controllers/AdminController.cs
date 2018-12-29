@@ -10,7 +10,7 @@ using System.Web.Security;
 
 namespace CatDaze.Controllers
 {
-    [Authorize(Roles = "CanManageSite")]
+    [Authorize(Roles = RoleName.CanManageSite)]
     public class AdminController : Controller
     {   
         private readonly ApplicationDbContext _dbContext = new ApplicationDbContext();
@@ -51,14 +51,22 @@ namespace CatDaze.Controllers
             return new HttpStatusCodeResult(404, "Bad Request");
         }
 
+        public ActionResult Update(int id)
+        {
+            var findImage = _dbContext.Images.FirstOrDefault(find => find.Id == id);
+
+            return View(findImage);
+        }
+
+        [HttpPost]
         public ActionResult Update(Image imageModel)
         {
-            //if(!ModelState.IsValid)
-            //{
-            //    ModelState.AddModelError("error", "There is an error with this form");
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("error", "There is an error with this form");
 
-            //    return View(imageModel);
-            //}
+                return View(imageModel);
+            }
 
             var findImage = _dbContext.Images.FirstOrDefault(x => x.Id == imageModel.Id);
 
@@ -124,6 +132,11 @@ namespace CatDaze.Controllers
             //    return RedirectToAction("Index", "Admin");
             //}
 
+        }
+
+        public ActionResult Delete()
+        {
+            return View();
         }
     }
 }
