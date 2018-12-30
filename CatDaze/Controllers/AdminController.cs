@@ -39,42 +39,40 @@ namespace CatDaze.Controllers
 
             if (findImage != null)
             {
-                var model = new Image()
+                var viewModel = new AdminViewModel()
                 {
-                    ImageName = findImage.ImageName,
-                    ImageCaption = findImage.ImageCaption
+
+                    Image = findImage
+                    //ImageName = findImage.ImageName,
+                    //ImageCaption = findImage.ImageCaption
                 };
 
-                return View(model);
+                return View(viewModel);
             }
 
             return new HttpStatusCodeResult(404, "Bad Request");
         }
 
-        public ActionResult Update(int id)
-        {
-            var findImage = _dbContext.Images.FirstOrDefault(find => find.Id == id);
-
-            return View(findImage);
-        }
-
         [HttpPost]
-        public ActionResult Update(Image imageModel)
+        public ActionResult Edit(AdminViewModel adminViewModel)
         {
             if (!ModelState.IsValid)
-            {
-                ModelState.AddModelError("error", "There is an error with this form");
+            {               
+                var viewModel = new AdminViewModel
+                {
+                    Image = adminViewModel.Image
+                };               
 
-                return View(imageModel);
+                return View("Edit", viewModel);
             }
 
-            var findImage = _dbContext.Images.FirstOrDefault(x => x.Id == imageModel.Id);
+            var findImage = _dbContext.Images.FirstOrDefault(x => x.Id == adminViewModel.Image.Id);
 
             if (findImage != null)
             {
 
-                findImage.ImageCaption = imageModel.ImageCaption;
-                findImage.ImageName = imageModel.ImageName;
+                findImage.ImageCaption = adminViewModel.Image.ImageCaption;
+                findImage.ImageName = adminViewModel.Image.ImageName;
                 findImage.LastUpdatedBy = User.Identity.Name;
                 findImage.LastUpdatedDate = DateTime.UtcNow;
 
@@ -94,6 +92,21 @@ namespace CatDaze.Controllers
         [HttpPost]
         public ActionResult Create(Image image, HttpPostedFileBase file)
         {
+
+            if (!ModelState.IsValid || file == null)
+            {
+                var model = new Image
+                {
+                    Id = image.Id,
+                    ImageCaption = image.ImageCaption,
+                    ImageName = image.ImageName,  
+                };
+
+                return View("Create", image);
+            }
+
+
+
             if (file != null)
             {
                 var extension = Path.GetExtension(file.FileName);
@@ -118,19 +131,6 @@ namespace CatDaze.Controllers
             }
 
 
-            //if (!ModelState.IsValid)
-            //{
-            //    var modelStateErrors = this.ModelState.Keys.SelectMany(key => this.ModelState[key].Errors);
-
-            //    return RedirectToAction("Create", image);
-            //}
-            //else
-            //{
-            //    _dbContext.Images.Add(image);
-            //    _dbContext.SaveChanges();
-
-            //    return RedirectToAction("Index", "Admin");
-            //}
 
         }
 

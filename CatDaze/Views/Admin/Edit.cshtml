@@ -1,4 +1,4 @@
-﻿@model CatDaze.Models.Image
+﻿@model CatDaze.ViewModels.AdminViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -6,18 +6,20 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm("Update", "Admin"))
+@using (Html.BeginForm("Edit", "Admin"))
 {
     <div class="form-group">
-        @Html.LabelFor(x => x.ImageName)
-        @Html.TextBoxFor(x => x.ImageName, new { @class = "form-control" })
+        @Html.LabelFor(x => x.Image.ImageName)
+        @Html.TextBoxFor(x => x.Image.ImageName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Image.ImageName)
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(x => x.ImageCaption)
-        @Html.TextBoxFor(x => x.ImageCaption, new { @class = "form-control" })
+        @Html.LabelFor(x => x.Image.ImageCaption)
+        @Html.TextBoxFor(x => x.Image.ImageCaption, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Image.ImageCaption)
     </div>
-    @Html.HiddenFor(x => x.Id)
+    @Html.HiddenFor(x => x.Image.Id)
 
     <button type="submit" class="btn btn-primary">Save</button>
 }

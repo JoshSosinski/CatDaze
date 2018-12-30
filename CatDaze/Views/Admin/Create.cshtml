@@ -10,11 +10,13 @@
     <div class="form-group">
         @Html.LabelFor(x => x.ImageName)
         @Html.TextBoxFor(x => x.ImageName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.ImageName)
     </div>
 
     <div class="form-group">
         @Html.LabelFor(x => x.ImageCaption)
         @Html.TextBoxFor(x => x.ImageCaption, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.ImageCaption)
     </div>
 
     <div class="form-group">

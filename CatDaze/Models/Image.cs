@@ -14,7 +14,7 @@ namespace CatDaze.Models
         [DisplayName("Name of Image"), Required, MaxLength(100)]
         public string ImageName { get; set; }
 
-        [DisplayName("Caption for Image"), MaxLength(255)]
+        [DisplayName("Caption for Image"), Required, MaxLength(255)]
         public string ImageCaption { get; set; }
 
         [MaxLength(500)]   

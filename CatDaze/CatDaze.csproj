@@ -196,6 +196,10 @@
     <Compile Include="Migrations\201812141835557_SeedUsers.Designer.cs">
       <DependentUpon>201812141835557_SeedUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812300002225_ImageCaptionRequired.cs" />
+    <Compile Include="Migrations\201812300002225_ImageCaptionRequired.Designer.cs">
+      <DependentUpon>201812300002225_ImageCaptionRequired.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -339,6 +343,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812141835557_SeedUsers.resx">
       <DependentUpon>201812141835557_SeedUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812300002225_ImageCaptionRequired.resx">
+      <DependentUpon>201812300002225_ImageCaptionRequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
