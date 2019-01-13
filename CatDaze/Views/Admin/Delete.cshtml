@@ -1,7 +1,22 @@
-﻿
+﻿@model CatDaze.Models.Image
 @{
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2>Are you sure you with to delete?</h2>
 
+@using (Html.BeginForm("DeleteConfirmed", "Admin", FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(m => m.ImageName):
+        @Html.DisplayFor(m => m.ImageName)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.ImageCaption):
+        @Html.DisplayFor(m => m.ImageCaption)
+    </div>
+    
+    @Html.HiddenFor(m => m.Id);
+
+    <button type="submit" class="btn btn-danger"> Delete</button>
+}

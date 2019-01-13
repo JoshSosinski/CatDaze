@@ -12,7 +12,7 @@ namespace CatDaze.Controllers
 {
     [Authorize(Roles = RoleName.CanManageSite)]
     public class AdminController : Controller
-    {   
+    {
         private readonly ApplicationDbContext _dbContext = new ApplicationDbContext();
 
         // GET: Admin
@@ -57,11 +57,11 @@ namespace CatDaze.Controllers
         public ActionResult Edit(AdminViewModel adminViewModel)
         {
             if (!ModelState.IsValid)
-            {               
+            {
                 var viewModel = new AdminViewModel
                 {
                     Image = adminViewModel.Image
-                };               
+                };
 
                 return View("Edit", viewModel);
             }
@@ -99,7 +99,7 @@ namespace CatDaze.Controllers
                 {
                     Id = image.Id,
                     ImageCaption = image.ImageCaption,
-                    ImageName = image.ImageName,  
+                    ImageName = image.ImageName,
                 };
 
                 return View("Create", image);
@@ -134,9 +134,49 @@ namespace CatDaze.Controllers
 
         }
 
-        public ActionResult Delete()
+        public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(500, "Bad Request");
+            }
+
+            var findPost = _dbContext.Images.FirstOrDefault(p => p.Id == id);
+
+            if (findPost != null)
+            {
+                var viewModel = new Image()
+                {
+                    Id = findPost.Id,
+                    ImageName = findPost.ImageName,
+                    ImageCaption = findPost.ImageCaption
+                };
+
+                return View(viewModel);
+            }
+
+            return new HttpStatusCodeResult(500, "Error with receiving the post from database. Please contact the site administrator");
+        }
+
+        [HttpPost]
+        public ActionResult DeleteConfirmed(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(500, "Bad Request");
+            }
+
+            var findPost = _dbContext.Images.FirstOrDefault(p => p.Id == id);
+
+            if (findPost != null)
+            {
+                _dbContext.Images.Remove(findPost);
+                _dbContext.SaveChanges();
+
+                return RedirectToAction("Index", "Admin");
+            }
+
+            return new HttpStatusCodeResult(500, "Error with deleting post from database. Please contact the site administrator");
         }
     }
 }
