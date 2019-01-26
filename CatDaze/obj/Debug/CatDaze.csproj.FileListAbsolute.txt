@@ -229,3 +229,6 @@ C:\Users\Joshu\Documents\GitHub\CatDaze\CatDaze\obj\Debug\CatDaze.csproj.CopyCom
 C:\Users\Joshu\Documents\GitHub\CatDaze\CatDaze\obj\Debug\CatDaze.dll
 C:\Users\Joshu\Documents\GitHub\CatDaze\CatDaze\obj\Debug\CatDaze.pdb
 C:\Users\Joshu\Documents\GitHub\CatDaze\CatDaze\obj\Debug\CatDaze.Migrations.ImageModelRequirmentChanges.resources
+C:\Users\Joshu\Documents\GitHub\CatDaze\CatDaze\obj\Debug\CatDaze.Migrations.ImagePathNameChange.resources
+C:\Users\Joshu\Documents\GitHub\CatDaze\CatDaze\obj\Debug\CatDaze.Migrations.SeedUsers.resources
+C:\Users\Joshu\Documents\GitHub\CatDaze\CatDaze\obj\Debug\CatDaze.Migrations.ImageCaptionRequired.resources

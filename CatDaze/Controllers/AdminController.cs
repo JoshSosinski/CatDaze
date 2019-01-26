@@ -105,8 +105,6 @@ namespace CatDaze.Controllers
                 return View("Create", image);
             }
 
-
-
             if (file != null)
             {
                 var extension = Path.GetExtension(file.FileName);
@@ -114,8 +112,7 @@ namespace CatDaze.Controllers
                 var path = Path.Combine(Server.MapPath(@"~\Content\Pictures"), picture);
 
                 file.SaveAs(path);
-
-                //Only Temporary
+    
                 image.ImagePath = @"~\Content\Pictures\" + picture;
                 image.LastUpdatedBy = User.Identity.Name;
                 image.LastUpdatedDate = DateTime.UtcNow;
@@ -129,9 +126,6 @@ namespace CatDaze.Controllers
             {
                 return View(image);
             }
-
-
-
         }
 
         public ActionResult Delete(int? id)
